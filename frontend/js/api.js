@@ -1,5 +1,4 @@
-const API = "http://localhost:5001"
-
+const API = "https://study-platform-2ntz.onrender.com";
 function getUserId() {
     return localStorage.getItem("user_id");
 }

@@ -58,32 +58,5 @@ app.listen(PORT, async () => {
         console.log("❌ Database failed:", e.message);
     }
 
-    try {
-        const res = await fetch("http://localhost:11434/api/tags");
-        if (!res.ok) throw new Error("offline");
-        const data = await res.json();
-        const models = data.models.map(m => m.name);
-
-        if (models.includes("mistral:latest") || models.includes("mistral")) {
-            console.log("🤖 Agent 1 (Mistral) is ready");
-        } else {
-            console.log("⚠️  Agent 1 (Mistral) is missing! Run: ollama pull mistral");
-        }
-
-        if (models.includes("llama3:latest") || models.some(m => m.includes("llama3"))) {
-            console.log("🤖 Agent 2 (Llama3) is ready");
-        } else {
-            console.log("⚠️  Agent 2 (Llama3) is missing! Run: ollama pull llama3");
-        }
-
-        if (models.includes("deepseek-coder-v2:latest") || models.some(m => m.includes("deepseek"))) {
-            console.log("⚖️  Agent 3 (Deepseek Judge) is ready");
-        } else {
-            console.log("⚠️  Agent 3 (Judge) is missing! Run: ollama pull deepseek-coder-v2");
-        }
-
-    } catch (e) {
-        console.log("❌ AI Engine Offline! Please start Ollama locally.");
-    }
     console.log("-----------------------------------\n");
 })

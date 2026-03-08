@@ -1,7 +1,7 @@
 let currentConversation = [];
 let chats = []; // Array of saved specific conversations
 
-const API_BASE = "http://localhost:5001";
+const API_BASE = "https://study-platform-2ntz.onrender.com";
 
 const chatWindow = document.getElementById("chatWindow");
 const promptInput = document.getElementById("promptInput");
@@ -135,7 +135,7 @@ async function sendPrompt() {
         console.error("Consensus Error", e);
         const tkBlk = document.getElementById(thinkingId);
         if (tkBlk) tkBlk.remove();
-        appendSystemMessage("Looks like the backend disconnected or the AWS Server is offline.");
+        appendSystemMessage("AI service unavailable");
     }
 }
 
