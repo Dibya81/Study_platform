@@ -12,14 +12,40 @@ async function loadHistory() {
         }
 
         list.innerHTML = history.map(item => `
-            <div class="history-item" onclick="viewHistory('${item.id}')">
-                <div class="history-title">${item.question}</div>
-                <div class="history-date">${new Date(item.created_at).toLocaleDateString()}</div>
+            <div class="history-item-container" style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                <div class="history-item" onclick="viewHistory('${item.id}')" style="flex:1; overflow: hidden;">
+                    <div class="history-title" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">${item.question}</div>
+                    <div class="history-date">${new Date(item.created_at).toLocaleDateString()}</div>
+                </div>
+                <button class="delete-history-btn" onclick="deleteMentorHistory('${item.id}', event)" title="Delete Chat" style="background: transparent; border: none; cursor: pointer; color: var(--text-secondary); padding: 4px; transition: color 0.2s;">
+                    🗑️
+                </button>
             </div>
         `).join('');
     } catch (e) {
         console.error("Failed to load history:", e);
         list.innerHTML = `<div class="empty-state">Failed to load history.</div>`;
+    }
+}
+
+async function deleteMentorHistory(id, event) {
+    event.stopPropagation();
+    try {
+        await deleteHistoryAPI(id);
+        // Refresh UI completely from backend state
+        await loadHistory();
+
+        // Clear chatbox if it feels like we need to reset
+        const chatBox = document.getElementById("chatBox");
+        chatBox.innerHTML = `
+            <h2>AI Mentor</h2>
+            <div class="empty-state" style="text-align:left; margin-top:0;">
+                Ask a specific question and our consensus engine will evaluate multiple AI pathways.
+            </div>
+        `;
+    } catch (e) {
+        console.error("Delete failed:", e);
+        alert("Could not delete chat at this time.");
     }
 }
 

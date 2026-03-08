@@ -285,8 +285,34 @@ function saveChatToHistory(firstPrompt) {
 
 function renderHistorySidebar() {
     chatHistoryList.innerHTML = chats.map(c => `
-        <button class="history-item" onclick="loadChat('${c.id}')">${escapeHTML(c.title)}</button>
+        <div class="history-item-container" style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+            <button class="history-item" onclick="loadChat('${c.id}')" style="flex:1; text-align: left; overflow: hidden; text-overflow: ellipsis; outline: none;">${escapeHTML(c.title)}</button>
+            <button class="delete-history-btn" onclick="deleteHubChat('${c.id}', event)" title="Delete Chat" style="background: transparent; border: none; cursor: pointer; color: var(--text-secondary); padding: 4px; transition: color 0.2s;">
+                🗑️
+            </button>
+        </div>
     `).join("");
+}
+
+async function deleteHubChat(id, event) {
+    event.stopPropagation();
+    try {
+        await deleteHistoryAPI(id);
+        chats = chats.filter(c => c.id !== id);
+
+        // If they deleted the active chat, reset UI
+        if (currentConversation.length > 0) {
+            const activeMatch = chats.find(c => c.session === currentConversation);
+            if (!activeMatch) {
+                startNewChat();
+            }
+        }
+
+        renderHistorySidebar();
+    } catch (e) {
+        console.error("Delete failed:", e);
+        alert("Could not delete chat at this time.");
+    }
 }
 
 function loadChat(id) {

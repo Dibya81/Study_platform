@@ -12,121 +12,311 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             background-color: var(--bg-base);
+            background-image: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.05) 0px, transparent 50%);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             margin: 0;
+            overflow: hidden;
+            position: relative;
         }
 
-        .login-card {
-            background-color: var(--bg-surface);
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        /* Ambient Typing Animation Background */
+        .ambient-typing {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: monospace;
+            font-size: 2rem;
+            color: var(--text-muted);
+            opacity: 0.3;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid var(--border-color);
+            animation: typing 8s steps(40, end) infinite;
+            pointer-events: none;
+            z-index: 0;
+            width: 0;
+        }
+
+        @keyframes typing {
+
+            0%,
+            10% {
+                width: 0;
+                content: "What is blockchain?";
+            }
+
+            40%,
+            60% {
+                width: 100%;
+                content: "What is blockchain?";
+            }
+
+            90%,
+            100% {
+                width: 0;
+                content: "What is blockchain?";
+            }
+        }
+
+        .ambient-typing::before {
+            content: "What is blockchain? ";
+            animation: textCycle 24s infinite;
+        }
+
+        @keyframes textCycle {
+
+            0%,
+            33% {
+                content: "What is blockchain? ";
+            }
+
+            34%,
+            66% {
+                content: "How does quantum computing work? ";
+            }
+
+            67%,
+            100% {
+                content: "Explain binary search tree. ";
+            }
+        }
+
+        .login-wrapper {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+            width: 90%;
             text-align: center;
-            max-width: 400px;
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 24px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 16px 0;
+            background: var(--text-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 40px;
+            text-align: left;
             width: 100%;
         }
 
-        .login-card h2 {
-            margin-top: 0;
-            margin-bottom: 8px;
-            font-size: 24px;
-            font-weight: 600;
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            border-radius: 12px;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
         }
 
-        .login-card p {
+        .feature-icon {
+            font-size: 1.25rem;
+            margin-top: 2px;
+        }
+
+        .feature-text h3 {
+            margin: 0 0 4px 0;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .feature-text p {
+            margin: 0;
+            font-size: 0.875rem;
             color: var(--text-secondary);
-            margin-bottom: 24px;
-            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .login-card {
+            background: var(--bg-surface-elevated);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            border-radius: 24px;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .input-tagline {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            display: block;
         }
 
         .input-group {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: var(--text-secondary);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
         }
 
         .input-group input {
             width: 100%;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 16px 20px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
-            background-color: var(--bg-surface-elevated);
+            background: var(--bg-surface);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
-            font-size: 14px;
+            font-size: 1rem;
             box-sizing: border-box;
-            transition: border-color 0.2s;
+            transition: all 0.3s ease;
         }
 
         .input-group input:focus {
             outline: none;
             border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+            background: var(--bg-surface-elevated);
         }
 
         .login-button {
             width: 100%;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 16px;
+            border-radius: 12px;
             border: none;
-            background-color: var(--accent-blue);
+            background: var(--accent-gradient);
             color: white;
-            font-size: 14px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.2s, opacity 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
             font-family: 'Inter', sans-serif;
         }
 
         .login-button:hover {
-            opacity: 0.9;
-        }
-
-        .login-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--accent-glow);
         }
 
         #errorMessage {
             color: #ef4444;
-            font-size: 13px;
+            font-size: 0.875rem;
             margin-top: 12px;
             display: none;
+        }
+
+        .badges {
+            margin-top: 24px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .badges span {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .trust-line {
+            margin-top: 40px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     </style>
 </head>
 
 <body>
-
     <script>
         if (localStorage.getItem('spatialTheme') === 'dark') {
             document.body.classList.add('dark-theme');
         }
     </script>
+    <div class="ambient-typing"></div>
 
+    <div class="login-wrapper">
+        <img src="../images/logo.png" alt="Consensus AI Logo" class="logo" onerror="this.style.display='none'">
 
-    <div class="login-card">
-        <h2>AI Consensus Engine</h2>
-        <p>Trusted AI Learning Workspace</p>
+        <h1>Multi-Agent AI That Debates Before Answering</h1>
+        <p class="subtitle">Powered by a consensus engine that evaluates multiple AI responses for accuracy and
+            reliability.</p>
 
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="nameInput">Enter your name</label>
-                <input type="text" id="nameInput" placeholder="e.g. Dibya" required autocomplete="off">
+        <div class="features-grid">
+            <div class="feature-item">
+                <span class="feature-icon">🧠</span>
+                <div class="feature-text">
+                    <h3>Multi-Agent Intelligence</h3>
+                    <p>Two AI models generate answers while a judge AI selects the best response.</p>
+                </div>
             </div>
+            <div class="feature-item">
+                <span class="feature-icon">⚡</span>
+                <div class="feature-text">
+                    <h3>Consensus Engine</h3>
+                    <p>Answers are evaluated using reliability metrics to reduce hallucinations.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">📚</span>
+                <div class="feature-text">
+                    <h3>AI Learning Hub</h3>
+                    <p>Explore career roadmaps, code practice, and track your progress.</p>
+                </div>
+            </div>
+        </div>
 
-            <button type="submit" id="loginBtn" class="login-button">Start Learning</button>
-            <div id="errorMessage"></div>
-        </form>
+        <div class="login-card">
+            <span class="input-tagline">Enter your name to begin your AI learning journey.</span>
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="text" id="nameInput" placeholder="e.g. Dibya" required autocomplete="off">
+                </div>
+                <button type="submit" id="loginBtn" class="login-button">Start Exploring →</button>
+                <div id="errorMessage"></div>
+            </form>
+            <div class="badges">
+                Powered by<br>
+                <span>Llama 4 Scout • Ministral 8B • Amazon Nova Pro</span>
+            </div>
+        </div>
+
+        <div class="trust-line">
+            Built with AWS Bedrock, Lambda, DynamoDB, and Aurora PostgreSQL.
+        </div>
     </div>
 
     <script src="../js/api.js"></script>

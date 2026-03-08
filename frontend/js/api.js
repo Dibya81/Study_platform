@@ -1,4 +1,5 @@
 const API = "https://study-platform-2ntz.onrender.com";
+
 function getUserId() {
     return localStorage.getItem("user_id");
 }
@@ -269,5 +270,20 @@ async function getCareerDetails(title) {
 async function getHistory() {
     const res = await fetch(API + "/mentor/history/" + getUserId());
     if (!res.ok) throw new Error("Failed to load history");
+    return res.json();
+}
+
+async function deleteHistoryAPI(id) {
+    const res = await fetch(`${API}/api/ai/history/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            user_id: getUserId()
+        })
+    });
+
+    if (!res.ok) throw new Error("Failed to delete chat history");
     return res.json();
 }

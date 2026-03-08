@@ -120,4 +120,30 @@ router.get("/history/:user_id", async (req, res) => {
     }
 })
 
+// Secure Delete Route
+router.delete("/history/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { user_id } = req.body;
+
+        if (!id || !user_id) {
+            return res.status(400).json({ error: "Missing conversation ID or user_id" });
+        }
+
+        const result = await pool.query(
+            "DELETE FROM conversations WHERE id = $1 AND user_id = $2 RETURNING id",
+            [id, user_id]
+        );
+
+        if (result.rowCount === 0) {
+            return res.status(404).json({ error: "Conversation not found or unauthorized" });
+        }
+
+        res.json({ success: true, message: "Chat deleted permanently" });
+    } catch (err) {
+        console.error("Error deleting history:", err);
+        res.status(500).json({ error: err.message });
+    }
+});
+
 export default router
