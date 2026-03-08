@@ -130,6 +130,13 @@ router.delete("/history/:id", async (req, res) => {
             return res.status(400).json({ error: "Missing conversation ID or user_id" });
         }
 
+        // 1. Delete dependent AI responses first due to foreign key constraint
+        await pool.query(
+            "DELETE FROM ai_responses WHERE conversation_id = $1",
+            [id]
+        );
+
+        // 2. Delete the conversation itself, enforcing ownership securely
         const result = await pool.query(
             "DELETE FROM conversations WHERE id = $1 AND user_id = $2 RETURNING id",
             [id, user_id]
