@@ -4,6 +4,7 @@ const pinBtn = document.getElementById('pinBtn');
 
 function openPage(page) {
     document.getElementById("workspaceFrame").src = `pages/${page}.html`;
+    sessionStorage.setItem('activePage', page);
 
     // Update active state
     document.querySelectorAll(".sidebar li").forEach(li => {
@@ -37,9 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const listItems = document.querySelectorAll(".sidebar li");
     if (listItems.length > 0) {
-        // By default openPage('dashboard') executes in iframe already, let's sync state
-        listItems[0].classList.add("active");
-        if (sidebar) sidebar.style.display = 'none';
+        const activePage = sessionStorage.getItem('activePage') || 'dashboard';
+        openPage(activePage);
     }
 
     // Pin Button logic
