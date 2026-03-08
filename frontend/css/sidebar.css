@@ -1,0 +1,230 @@
+body {
+    margin: 0;
+    font-family: Arial;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    background: var(--bg-base);
+    overflow: hidden;
+    position: relative;
+}
+
+.sidebar {
+    width: 240px;
+    background: var(--bg-surface);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-right: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 32px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: margin-left 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    position: relative;
+    z-index: 100;
+}
+
+.sidebar.collapsed {
+    margin-left: -220px;
+}
+
+.sidebar.collapsed:hover {
+    margin-left: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-left: 4px;
+}
+
+.sidebar-logo {
+    height: 32px;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.sidebar h2 {
+    font-size: 20px;
+    margin: 0;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.pin-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.pin-btn:hover {
+    background: var(--accent-glow);
+    color: var(--text-primary);
+}
+
+.pin-btn.unpinned {
+    opacity: 0.5;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar li {
+    padding: 12px 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    /* Elastic Jelly Spring Physics */
+    transition: transform 0.6s cubic-bezier(0.68, -0.6, 0.32, 1.6), background 0.3s ease, color 0.3s ease;
+    position: relative;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+    background: var(--accent-glow);
+    color: var(--text-primary);
+    transform: translateX(12px) scale(1.02);
+}
+
+.sidebar li.active {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+.sidebar li.active::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 20px;
+    background: var(--accent-blue);
+    border-radius: 4px;
+    box-shadow: 0 0 10px var(--accent-blue);
+}
+
+.sidebar li:hover::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: #3b82f6;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #3b82f6;
+}
+
+.workspace {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.top-header {
+    height: 70px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    background: var(--bg-surface-elevated);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    z-index: 10;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 8px 16px;
+    width: 400px;
+    transition: all 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    position: relative;
+    z-index: 20;
+}
+
+.search-results {
+    position: absolute;
+    top: 60px;
+    left: 40px;
+    width: 400px;
+    max-height: 300px;
+    overflow-y: auto;
+    background: var(--bg-surface-elevated);
+    z-index: 50;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.search-result-item {
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: background 0.2s ease;
+}
+
+.search-result-item:hover {
+    background: var(--accent-glow);
+    color: var(--accent-blue);
+}
+
+.search-bar:focus-within {
+    border-color: var(--accent-blue);
+    background: var(--bg-surface);
+    box-shadow: 0 0 0 4px var(--accent-glow);
+    transform: scale(1.02);
+}
+
+.search-icon {
+    color: var(--text-secondary);
+    margin-right: 12px;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    font-size: 14px;
+    flex: 1;
+    outline: none;
+}
+
+.search-bar input::placeholder {
+    color: var(--text-muted);
+}
+
+iframe {
+    width: 100%;
+    flex: 1;
+    border: none;
+    display: block;
+}

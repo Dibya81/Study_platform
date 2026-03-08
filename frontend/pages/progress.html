@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/progress.css">
+</head>
+
+<body>
+
+    <script>
+        if (localStorage.getItem('spatialTheme') === 'dark') {
+            document.body.classList.add('dark-theme');
+        }
+    </script>
+
+
+    <div class="progress-container reveal">
+        <h2 class="gradient-text">Learning Progress</h2>
+
+        <div class="stats-grid" id="stats">
+            <!-- Rendered via JS -->
+        </div>
+
+        <!-- LeetCode Style Streaks & Visual Chart Panel -->
+        <div class="streak-chart-panel floating-card">
+            <div class="streak-section">
+                <h3>Learning Consistency</h3>
+                <div class="streak-boxes">
+                    <div class="streak-box">
+                        <div class="streak-value" id="currentStreak">0 <span class="streak-flame">🔥</span></div>
+                        <div class="streak-label">Current Streak</div>
+                    </div>
+                    <div class="streak-box">
+                        <div class="streak-value" id="maxStreak">0 <span class="streak-flame">✨</span></div>
+                        <div class="streak-label">Max Streak</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-section">
+                <h3>Progress Distribution</h3>
+                <div class="css-pie-chart" id="progressChart">
+                    <div class="chart-center">
+                        <span id="chartLabel">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card floating-card">
+                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg> Recent Activity</h3>
+                <div id="skills" class="activity-timeline">
+                    <!-- Activities -->
+                </div>
+            </div>
+
+            <div class="dashboard-card floating-card">
+                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg> AI Recommendation</h3>
+                <div id="recommendation" class="rec-box">
+                    <!-- Recommendation -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/progress.js"></script>
+
+</body>
+
+</html>

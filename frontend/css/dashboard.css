@@ -1,0 +1,783 @@
+body {
+    background: var(--bg-base);
+}
+
+section {
+    margin-bottom: 120px;
+}
+
+.hero {
+    text-align: center;
+    position: relative;
+    padding: 80px 0;
+}
+
+/* Background Glow */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 400px;
+    background: var(--accent-glow);
+    filter: blur(120px);
+    z-index: -1;
+    border-radius: 50%;
+    will-change: transform;
+}
+
+.hero h1 {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.hero p {
+    font-size: 20px;
+    color: var(--text-secondary);
+}
+
+.block {
+    padding: 32px;
+    margin-top: 24px;
+    will-change: transform;
+}
+
+.flow {
+    text-align: center;
+}
+
+.step {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    padding: 16px 24px;
+    border-radius: var(--radius-md);
+    margin: 10px;
+    display: inline-block;
+}
+
+.arrow {
+    font-size: 24px;
+}
+
+/* Utilities */
+.py-24 {
+    padding-top: 96px;
+    padding-bottom: 96px;
+}
+
+.p-rel {
+    position: relative;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+/* Grid specific to the story layout */
+.story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+@media (max-width: 768px) {
+    .story-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- SAAS 2.0 BENTO GRID --- */
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 240px;
+    gap: 24px;
+}
+
+.bento-card {
+    background: var(--bg-surface);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.bento-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.05),
+        0 4px 12px rgba(99, 102, 241, 0.04),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.bento-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.bento-medium {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.bento-small {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+/* Bento Typography */
+.bento-card h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    letter-spacing: 0.01em;
+}
+
+.bento-card p {
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+    font-size: 15px;
+}
+
+@media (max-width: 1024px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bento-small {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 640px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-card {
+        grid-column: span 1 !important;
+    }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* CONSENSUS VISUAL */
+
+.consensus-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-top: 40px;
+    position: relative;
+}
+
+/* 3D Liquid Core */
+
+.consensus-core {
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg);
+    width: 140px;
+    height: 140px;
+    z-index: 5;
+    transition: transform 0.1s linear;
+    transform-style: preserve-3d;
+}
+
+.core-inner {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffffff, rgba(99, 102, 241, 0.2));
+    box-shadow:
+        0 20px 40px rgba(99, 102, 241, 0.3),
+        inset 0 0 40px rgba(255, 255, 255, 0.8),
+        inset 0 -20px 40px rgba(168, 85, 247, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: coreRotate 8s infinite linear;
+}
+
+.core-layer {
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    border: 2px dashed rgba(99, 102, 241, 0.4);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+    animation: coreRotateReverse 12s infinite linear;
+    transform: translateZ(20px);
+}
+
+@keyframes coreRotate {
+    0% {
+        transform: rotate3d(1, 1, 0, 0deg);
+    }
+
+    100% {
+        transform: rotate3d(1, 1, 0, 360deg);
+    }
+}
+
+@keyframes coreRotateReverse {
+    0% {
+        transform: rotate3d(-1, 0.5, 0, 0deg);
+    }
+
+    100% {
+        transform: rotate3d(-1, 0.5, 0, 360deg);
+    }
+}
+
+.node {
+    padding: 16px 32px;
+    opacity: 0.9;
+    transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 10;
+    will-change: transform;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.node.active {
+    opacity: 1;
+    transform: scale(1.05) !important;
+    border-color: rgba(99, 102, 241, 0.6);
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+}
+
+.node.judge {
+    background: rgba(99, 102, 241, 0.05);
+    border-color: var(--accent-blue);
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px #4ade80;
+    animation: statusPulse 1.5s infinite;
+}
+
+@keyframes statusPulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+.models {
+    display: flex;
+    gap: 120px;
+}
+
+/* SVG Path Animation Styles */
+.connection-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.pulse-path {
+    fill: none;
+    stroke: url(#glowPulse);
+    stroke-width: 3;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    opacity: 0;
+    filter: url(#neon);
+    transition: opacity 0.4s ease;
+}
+
+.pulse-path.active {
+    opacity: 1;
+    animation: flowPulse 2s linear infinite;
+}
+
+@keyframes flowPulse {
+    from {
+        stroke-dashoffset: 1;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Base button styles for the dashboard */
+button {
+    background: var(--text-primary);
+    color: var(--bg-base);
+    border: none;
+    padding: 16px 32px;
+    border-radius: var(--radius-lg);
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 40px;
+    transition: opacity 0.2s ease;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* --- THE SPATIAL UNIVERSE --- */
+.spatial-universe {
+    position: relative;
+    width: 100%;
+    height: 1000px;
+    /* Force a gigantic canvas size for orbiting */
+    margin: 80px 0;
+    overflow: hidden;
+    perspective: 1500px;
+}
+
+.spatial-filaments {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.orbit-path {
+    fill: none;
+    stroke: url(#orbitGlow);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 8;
+    opacity: 0.3;
+    animation: orbitDash 20s linear infinite;
+}
+
+@keyframes orbitDash {
+    from {
+        stroke-dashoffset: 200;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Base Celestial System Positioning */
+.orbital-system {
+    position: absolute;
+    width: 280px;
+    padding: 24px;
+    z-index: 10;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.6s ease;
+    transform-style: preserve-3d;
+}
+
+/* Expanding Hover State (Spring Physics Feeling) */
+.orbital-system:hover {
+    transform: scale(1.08) translateZ(30px) !important;
+    /* Exaggerated Z lift */
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.05),
+        0 0 40px rgba(99, 102, 241, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Central Orb overrides to make it huge */
+.system-orb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+    height: 220px;
+    z-index: 5;
+    animation: orbLevitate 6s ease-in-out infinite alternate;
+}
+
+.system-orb .orb-core {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffffff, var(--accent-purple));
+    box-shadow:
+        0 20px 60px rgba(168, 85, 247, 0.4),
+        inset 0 0 60px rgba(255, 255, 255, 0.8),
+        inset 0 -20px 40px rgba(99, 102, 241, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    animation: orbSpin 12s infinite linear;
+}
+
+.orb-pulsar {
+    position: absolute;
+    inset: -40px;
+    border-radius: 50%;
+    border: 1px solid var(--accent-purple);
+    opacity: 0;
+    animation: hapticPulse 4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes hapticPulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+        border-width: 4px;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+        border-width: 0px;
+    }
+}
+
+@keyframes orbLevitate {
+    0% {
+        transform: translate(-50%, -50%) translateY(-10px);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) translateY(10px);
+    }
+}
+
+/* --- Specific Feature Card Micro-Interactions --- */
+
+/* 1. Holo Bar Chart (Project Dash) */
+.holo-bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    height: 100px;
+    margin-top: 16px;
+    perspective: 400px;
+}
+
+.holo-bar {
+    flex: 1;
+    background: linear-gradient(to top, var(--accent-blue), transparent);
+    border-radius: 4px;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    transition: transform 0.4s ease, filter 0.4s;
+    transform-style: preserve-3d;
+}
+
+.spin-hover:hover {
+    transform: rotateY(180deg) scale(1.1) translateZ(20px);
+    filter: hue-rotate(var(--hue, 90deg));
+}
+
+/* 2. Refractive Lens Pipeline */
+.mini-pipeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.refractive-node {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(60px) contrast(1.2);
+    /* Massive blur for lens effect */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.pipeline-flow {
+    color: var(--accent-blue);
+    font-weight: bold;
+}
+
+/* 3. Mentor Vortex */
+.mentor-vortex {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vortex-icon {
+    font-size: 40px;
+    position: absolute;
+    z-index: 2;
+}
+
+.vortex-text {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    animation: vortexSpin 20s linear infinite;
+}
+
+.vortex-text text {
+    fill: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+@keyframes vortexSpin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 4. Terminal Fluidity */
+.code-terminal {
+    background: rgba(15, 23, 42, 0.85) !important;
+    /* Override white glass */
+    backdrop-filter: blur(20px) !important;
+    border-color: rgba(99, 102, 241, 0.3) !important;
+    color: #F8FAFC;
+}
+
+.terminal-header {
+    font-family: monospace;
+    font-size: 12px;
+    color: #4ade80;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 8px;
+}
+
+.terminal-body {
+    font-family: monospace;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.fluid-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: #4ade80;
+    vertical-align: middle;
+    animation: fluidBlink 1s infinite alternate;
+    border-radius: 4px;
+    box-shadow: 0 0 8px #4ade80;
+}
+
+@keyframes fluidBlink {
+    0% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+
+    100% {
+        opacity: 0.2;
+        transform: scaleY(0.7);
+    }
+}
+
+/* 5. Holographic Foil Badge */
+.foil-badge {
+    position: relative;
+    overflow: hidden;
+}
+
+.foil-badge::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(from 0deg, transparent, var(--accent-blue), var(--accent-purple), transparent);
+    animation: foilSpin 4s linear infinite;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+@keyframes foilSpin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 6. Community Limits */
+.avatar-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+    gap: 8px;
+}
+
+.tiny-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg-surface-elevated);
+    border: 2px solid var(--accent-blue);
+}
+
+.glow-line {
+    flex: 1;
+    height: 2px;
+    background: var(--accent-purple);
+    box-shadow: 0 0 8px var(--accent-purple);
+}
+
+/* 7. Sound Waves */
+.breathing-waves {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 60px;
+    margin-top: 16px;
+}
+
+.breathing-waves span {
+    width: 6px;
+    background: var(--accent-blue);
+    border-radius: 6px;
+    animation: waveBounce 1s ease-in-out infinite alternate;
+}
+
+.breathing-waves span:nth-child(1) {
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.breathing-waves span:nth-child(2) {
+    height: 40px;
+    animation-delay: 0.2s;
+}
+
+.breathing-waves span:nth-child(3) {
+    height: 30px;
+    animation-delay: 0.4s;
+}
+
+.breathing-waves span:nth-child(4) {
+    height: 50px;
+    animation-delay: 0.6s;
+}
+
+@keyframes waveBounce {
+    0% {
+        transform: scaleY(0.5);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scaleY(1.2);
+        opacity: 1;
+        box-shadow: 0 0 12px var(--accent-blue);
+    }
+}
+
+/* --- MOBILE RESPONSIVENESS OVERRIDES --- */
+
+@media (max-width: 850px) {
+    .consensus-flow {
+        transform: scale(0.7);
+        transform-origin: top center;
+        margin-bottom: -150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .py-24 {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+
+    .story-grid {
+        padding: 0 20px;
+    }
+
+    .features {
+        padding: 0 20px !important;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .hero::before {
+        width: 300px;
+        height: 200px;
+        filter: blur(80px);
+    }
+
+    .pipeline-header {
+        flex-direction: column !important;
+        border-radius: 24px !important;
+        padding: 24px !important;
+    }
+
+    .pipeline-arrow {
+        transform: rotate(90deg);
+    }
+}
+
+@media (max-width: 600px) {
+    .consensus-flow {
+        transform: scale(0.40);
+        transform-origin: top center;
+        margin-bottom: -280px;
+    }
+
+    .bento-card {
+        padding: 24px;
+    }
+
+    .bento-card h3 {
+        font-size: 18px;
+    }
+
+    .holo-bar-chart {
+        height: 80px;
+    }
+}

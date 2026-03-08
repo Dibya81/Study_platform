@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/codehub.css">
+    <!-- CodeMirror Core and Theme -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/dracula.min.css">
+
+<body>
+
+    <script>
+        if (localStorage.getItem('spatialTheme') === 'dark') {
+            document.body.classList.add('dark-theme');
+        }
+    </script>
+
+
+    <h2 class="gradient-text">Code Hub</h2>
+
+    <div class="code-workspace">
+        <div class="editor-header">
+            <select id="language" onchange="updateLanguage()">
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="c">C</option>
+            </select>
+            <div class="actions">
+                <button class="primary" onclick="runCode()">Run Code</button>
+                <button onclick="explainCode()">Explain Code</button>
+                <button onclick="analyzeCode()">Analyze Code</button>
+            </div>
+        </div>
+
+        <div class="editor-wrapper">
+            <!-- Textarea to mount CodeMirror onto -->
+            <textarea id="codeEditor"></textarea>
+        </div>
+    </div>
+
+    <h3>Terminal Output</h3>
+
+    <pre id="output" class="terminal-output"></pre>
+
+    <!-- CodeMirror Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/clike/clike.min.js"></script>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/codehub.js"></script>
+
+</body>
+
+</html>

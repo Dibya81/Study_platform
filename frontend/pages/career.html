@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/career.css">
+</head>
+
+<body>
+
+    <script>
+        if (localStorage.getItem('spatialTheme') === 'dark') {
+            document.body.classList.add('dark-theme');
+        }
+    </script>
+
+
+    <div class="career-container reveal">
+        <h2 class="gradient-text">Career Roadmaps</h2>
+
+        <div class="career-grid">
+            <!-- Left Pane: Careers List -->
+            <div class="careers-sidebar glass-panel">
+                <div class="sidebar-header">
+                    <h3>Explore Paths</h3>
+                </div>
+                <div id="careerList" class="career-nav-list">
+                    <!-- Rendered via JS -->
+                </div>
+            </div>
+
+            <!-- Right Pane: Career Details & Roadmap -->
+            <div class="career-content glass-panel">
+                <div id="careerDetails" class="details-container">
+                    <div class="empty-state">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                            style="color:var(--text-secondary); margin-bottom:16px; opacity:0.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                        <p>Select a career path from the left to view its roadmap.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/career.js"></script>
+
+</body>
+
+</html>

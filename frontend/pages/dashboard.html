@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Consensus Engine Dashboard</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+
+</head>
+
+<body>
+
+    <script>
+        if (localStorage.getItem('spatialTheme') === 'dark') {
+            document.body.classList.add('dark-theme');
+        }
+    </script>
+
+
+    <!-- HERO -->
+
+    <section class="hero reveal">
+
+        <img src="../images/logo.png" alt="Logo" style="height: 80px; margin-bottom: 24px; object-fit: contain;">
+
+        <h1 class="gradient-text">Consensus Engine</h1>
+
+        <p>Trusted AI Learning Workspace</p>
+
+    </section>
+
+
+    <!-- PROBLEM + SOLUTION (2 COLUMN) -->
+
+    <section class="story py-24">
+        <div class="story-grid"
+            style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1000px; margin: 0 auto; padding: 0 40px;">
+            <div class="block reveal floating-card" style="margin: 0;">
+                <h2>The Problem</h2>
+                <p>
+                    Traditional AI tools rely on a single model which can produce hallucinations
+                    and unreliable answers.
+                    Users have no way to verify the correctness of responses.
+                </p>
+            </div>
+
+            <div class="block reveal floating-card" style="margin: 0;">
+                <h2>The Solution</h2>
+                <p>
+                    Consensus Engine introduces a multi-model AI verification system.
+                    Instead of trusting one AI model, our system compares answers from
+                    multiple AI models and uses a judge model to determine the most
+                    accurate response.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CONSENSUS VISUALIZATION (MERGED PIPELINE) -->
+
+    <section class="consensus reveal py-24"
+        style="background: radial-gradient(circle at center, rgba(168, 85, 247, 0.05) 0%, transparent 60%);">
+
+        <div style="text-align: center; margin-bottom: 60px;">
+            <h2>AI Consensus Architecture</h2>
+            <div class="pipeline-header"
+                style="display: inline-flex; align-items: center; gap: 16px; margin-top: 24px; padding: 16px 32px; background: rgba(255,255,255,0.05); border-radius: 100px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
+                <span style="font-weight: 500; font-size: 14px;">User Request</span>
+                <span class="pipeline-arrow" style="color: var(--accent-blue)">→</span>
+                <span style="font-weight: 500; font-size: 14px;">Parallel Generation (Meta/Mistral)</span>
+                <span class="pipeline-arrow" style="color: var(--accent-blue)">→</span>
+                <span style="font-weight: 500; font-size: 14px; color: #4ade80;">Nova Judge Verification</span>
+            </div>
+        </div>
+
+        <div class="consensus-flow" id="consensusContainer"
+            style="height: 500px; position: relative; perspective: 1200px;">
+
+            <!-- Glowing Focal Point -->
+            <div class="core-focal-glow"
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%); border-radius: 50%; z-index: 1;">
+            </div>
+
+            <!-- 3D Liquid Core -->
+            <div id="consensusCore" class="consensus-core" style="z-index: 5;">
+                <div class="core-inner"></div>
+                <div class="core-layer"></div>
+            </div>
+
+            <!-- Tied Floating Nodes -->
+            <div class="node user floating-card"
+                style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 10;">
+                User Question
+            </div>
+
+            <div class="models"
+                style="position: absolute; top: 160px; width: 100%; display: flex; justify-content: center; gap: 240px; z-index: 10;">
+                <div class="node model floating-card"><span class="status-dot"></span> Meta Llama 4</div>
+                <div class="node model floating-card"><span class="status-dot"></span> Ministral 8B</div>
+            </div>
+
+            <div class="node judge floating-card"
+                style="position: absolute; top: 400px; left: 50%; transform: translateX(-50%); z-index: 10;">
+                <span class="status-dot"></span> Amazon Nova Pro (Judge)
+            </div>
+
+            <!-- Fiber-Optic SVG Data streams -->
+            <svg class="connection-svg" viewBox="0 0 800 500" preserveAspectRatio="none" style="z-index: 2;">
+                <defs>
+                    <linearGradient id="glowPulse" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="var(--accent-blue)" />
+                        <stop offset="50%" stop-color="var(--accent-purple)" />
+                        <stop offset="100%" stop-color="var(--accent-blue)" />
+                    </linearGradient>
+                    <filter id="neon" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+                        <feMerge>
+                            <feMergeNode in="blur" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                    </filter>
+                </defs>
+
+                <!-- Use actual cubic beziers for the flow lines connecting the nodes to the core -->
+                <path class="pulse-path" id="path1" d="M 400 64 C 400 100, 240 120, 240 160" pathLength="1" />
+                <path class="pulse-path" id="path2" d="M 400 64 C 400 100, 560 120, 560 160" pathLength="1" />
+
+                <!-- Agents to Core -->
+                <path class="pulse-path" id="path4" d="M 240 210 C 240 250, 400 230, 400 280" pathLength="1" />
+                <path class="pulse-path" id="path6" d="M 560 210 C 560 250, 400 230, 400 280" pathLength="1" />
+
+                <!-- Core to Judge -->
+                <path class="pulse-path" id="path7" d="M 400 340 L 400 400" pathLength="1" />
+            </svg>
+
+        </div>
+
+    </section>
+
+
+    <!-- SAAS 2.0 BENTO GRID -->
+
+    <section class="features py-24" style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+        <h2 style="text-align: center; margin-bottom: 48px;">Platform Ecosystem</h2>
+
+        <div class="bento-grid">
+
+            <!-- LARGE: Code Editor -->
+            <div class="bento-card bento-large code-terminal">
+                <div class="card-content">
+                    <h3>Code Hub Environment</h3>
+                    <p style="margin-bottom: 24px;">Execute, analyze and explain Python, Java, and C code inside a fully
+                        sandboxed environment. No setup required.</p>
+                    <div class="terminal-body typewrite-effect" style="margin-top: auto;">
+                        <span class="fluid-cursor"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MEDIUM: Backend Orchestrator -->
+            <div class="bento-card bento-medium">
+                <div class="card-content">
+                    <h3>Backend Intelligence</h3>
+                    <p>Orchestrates AWS Bedrock parallel requests, tracks long-term progress embeddings, and maintains
+                        an edge-cached community solving network.</p>
+                </div>
+            </div>
+
+            <!-- MEDIUM: Holographic Metrics -->
+            <div class="bento-card bento-medium">
+                <div class="card-content">
+                    <h3>Project Analytics</h3>
+                    <p>Real-time tracked progression across all supported frameworks.</p>
+                    <div class="holo-bar-chart" style="margin-top: 24px;">
+                        <div class="holo-bar" style="height: 40px;"></div>
+                        <div class="holo-bar" style="height: 80px;"></div>
+                        <div class="holo-bar spin-hover" style="height: 60px; --hue: 240deg;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MEDIUM: AI Mentor -->
+            <div class="bento-card bento-medium p-rel overflow-hidden">
+                <div class="card-content" style="position: relative; z-index: 2;">
+                    <h3>AI Mentor</h3>
+                    <p>Hallucination-free learning.</p>
+                </div>
+                <!-- Absolutely position the vortex as a background decoration -->
+                <div class="mentor-vortex"
+                    style="position: absolute; right: -20px; bottom: -20px; opacity: 0.6; pointer-events: none;">
+                    <div class="vortex-icon">🎓</div>
+                    <svg class="vortex-text" viewBox="0 0 100 100">
+                        <path id="circlePath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
+                            fill="transparent" />
+                        <text>
+                            <textPath href="#circlePath" startOffset="0%">Avoid Hallucinations - Perfect Logic - Explain
+                                Code</textPath>
+                        </text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- SMALL: Voice UI -->
+            <div class="bento-card bento-small">
+                <div class="card-content" style="align-items: center; text-align: center;">
+                    <h3>Voice Engine</h3>
+                    <p style="margin-bottom: 24px;">Hands-free coding assistance.</p>
+                    <div class="breathing-waves">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SMALL: Community -->
+            <div class="bento-card bento-small">
+                <div class="card-content" style="align-items: center; text-align: center;">
+                    <h3>Community</h3>
+                    <p style="margin-bottom: 24px;">Linked interactive solvers.</p>
+                    <div class="avatar-link">
+                        <div class="tiny-avatar"></div>
+                        <div class="glow-line"></div>
+                        <div class="tiny-avatar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MEDIUM: AI Pipeline Hub -->
+            <div class="bento-card bento-medium">
+                <div class="card-content">
+                    <h3>AI Pipeline Hub</h3>
+                    <p>AWS Lambda Verification flow.</p>
+                    <div class="mini-pipeline"
+                        style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
+                        <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                            <div class="refractive-node" style="font-size: 11px;">Meta Llama 4</div>
+                            <div class="refractive-node" style="font-size: 11px;">Ministral 8B</div>
+                        </div>
+                        <div style="text-align: center; color: var(--accent-blue);">↓</div>
+                        <div style="display: flex; justify-content: center;">
+                            <div class="refractive-node judge-node"
+                                style="border-color: #4ade80; color: #4ade80; font-size: 11px;">Amazon Nova Pro (Judge)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="cta reveal" style="text-align: center; margin-bottom: 80px; position: relative; z-index: 100;">
+        <h2>Ready to Experience Verified AI?</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 32px;">Stop guessing and start analyzing with our
+            multi-model consensus engine.</p>
+        <button onclick="window.parent.postMessage('open-aihub', '*');" class="floating-card"
+            style="padding: 20px 48px; font-size: 20px; background: var(--accent-gradient); color: white; border: none; cursor: pointer; position: relative; z-index: 100;">
+            Let's Begin
+        </button>
+    </section>
+
+    <script src="../js/dashboard.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+body {
+    background: var(--bg-base);
+}
+
+h2 {
+    font-size: 32px;
+    margin-bottom: 24px;
+}
+
+h3 {
+    margin-top: 32px;
+    color: var(--text-secondary);
+}
+
+.code-workspace {
+    background: rgba(18, 18, 20, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 900px;
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+select {
+    background: var(--bg-surface-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-ui);
+    outline: none;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+}
+
+button {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+button.primary {
+    background: var(--accent-blue);
+    color: #fff;
+    border: none;
+}
+
+button.primary:hover {
+    background: #2563eb;
+}
+
+.editor-wrapper {
+    height: 400px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.CodeMirror {
+    height: 100%;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.terminal-output {
+    background: #000;
+    color: #22c55e;
+    padding: 16px;
+    border-radius: var(--radius-md);
+    min-height: 120px;
+    max-width: 900px;
+    font-family: monospace;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+}
