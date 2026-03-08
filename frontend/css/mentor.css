@@ -379,3 +379,48 @@ button:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
+
+/* --- Mobile / ChatGPT Style Chat Adjustments --- */
+@media (max-width: 768px) {
+    .mentor-layout {
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+
+    .mentor-container {
+        padding-bottom: 80px;
+    }
+
+    .chat-box {
+        height: calc(100vh - 120px);
+        padding: 16px;
+    }
+
+    .input-area {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        margin: 0;
+        z-index: 100;
+        box-shadow: 0 -10px 40px var(--bg-surface);
+        padding: 8px;
+    }
+
+    .user-msg,
+    .ai-group {
+        max-width: 100%;
+        font-size: 14px;
+    }
+
+    .final-answer {
+        padding: 16px;
+    }
+
+    .final-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}

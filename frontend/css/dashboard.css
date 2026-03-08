@@ -731,6 +731,27 @@ button:hover {
 
     .story-grid {
         padding: 0 20px;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .col-span-2,
+    .row-span-2 {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 24px;
     }
 
     .features {

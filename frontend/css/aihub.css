@@ -514,3 +514,60 @@ body {
     justify-content: center;
     margin-bottom: 3px;
 }
+
+/* --- Mobile / ChatGPT Style Chat Adjustments --- */
+@media (max-width: 768px) {
+    .aihub-layout {
+        height: 100vh;
+        margin: 0;
+        gap: 0;
+    }
+
+    .aihub-main {
+        padding-bottom: 80px;
+        /* Space for fixed input */
+    }
+
+    .chat-window {
+        padding: 16px;
+        height: calc(100vh - 140px);
+    }
+
+    .msg-row {
+        max-width: 100%;
+    }
+
+    .chat-input-area {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        margin: 0;
+        z-index: 100;
+        box-shadow: 0 -10px 40px var(--bg-surface);
+    }
+
+    .aihub-header {
+        padding: 16px;
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .header-badges {
+        flex-wrap: wrap;
+    }
+
+    .judge-block {
+        padding: 16px;
+    }
+
+    .actions-row {
+        flex-direction: column;
+    }
+
+    .select-btn {
+        width: 100%;
+    }
+}

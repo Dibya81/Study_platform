@@ -94,6 +94,35 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // --- Phase 5: Mobile Navigation Logic ---
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    if (mobileMenuBtn && sidebar && sidebarOverlay) {
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.add('mobile-open');
+            sidebarOverlay.classList.add('active');
+        });
+
+        // Close when clicking the dark overlay
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('mobile-open');
+            sidebarOverlay.classList.remove('active');
+        });
+
+        // Also close sidebar if a link is clicked on mobile
+        const mobileLinks = document.querySelectorAll(".sidebar li");
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('mobile-open');
+                    sidebarOverlay.classList.remove('active');
+                }
+            });
+        });
+    }
+
 });
 
 // Listen for messages from iframes to trigger parent routing
